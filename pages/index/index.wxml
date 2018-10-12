@@ -1,0 +1,14 @@
+<!--index.wxml-->
+<view class="container">
+  <swiper class="swiper" indicator-dots="{{indicatorDots}}"
+  autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+    <block wx:for="{{slideShow}}" wx:key="{{index}}">
+      <swiper-item>
+        <image mode="scaleToFill" src="{{item.picture}}" class="slide-image"/>
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class="usermotto">
+    <text class="user-motto">1111</text>
+  </view>
+</view>
