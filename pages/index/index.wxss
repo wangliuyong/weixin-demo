@@ -43,9 +43,10 @@ swiper-item{
   margin-top: 145rpx;
 }
 .magazineLlist{
+  display: flex;
   box-sizing: border-box;
   width: 100%;
-  padding: 10rpx;
+  padding: 20rpx 50rpx;
   overflow: hidden;
   border-bottom: 5rpx solid #ccc;
   margin-top: 30rpx;

@@ -10,10 +10,12 @@
   </swiper>
   <view class="magazineListWrap">
     <view class="magazineLlist" wx:for="{{magazineLlist}}" wx:key="*this"  id="{{item.id}}">
-      <image src="{{item.picture}}" class="picture"></image>
-      <text class="magazineName">{{item.magazineName}}</text>
-      <text class="magazineIntro">{{item.magazineIntro}}</text>
-      <text class="unitPrice">{{"RMB:"+item.unitPrice}}</text>
+      <image src="{{item.picture}}" class="picture"  style="width: 220rpx; height: 220rpx; background-color: #eeeeee;" mode="scaleToFill"></image>
+      <view class="textWrap">
+        <text class="magazineName">{{item.magazineName}}</text>
+        <text class="magazineIntro">{{item.magazineIntro}}</text>
+        <text class="unitPrice">{{"RMB:"+item.unitPrice}}</text>
+      </view>
     </view>
   </view>
 </view>
