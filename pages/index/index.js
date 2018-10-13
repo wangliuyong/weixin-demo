@@ -3,7 +3,7 @@ var gql = require('../../graphql/wxgql.js');
 var GraphQL = gql.GraphQL;
 
 
-console.log(GraphQL)
+
 
 
 //获取应用实例
