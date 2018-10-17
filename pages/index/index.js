@@ -23,7 +23,6 @@ Page({
 
   },
   getData() {
-
     // 初始化对象
     let gql = GraphQL({
       url: 'http://ebookqqsh.ioobot.com/release/graphql' // url必填 
@@ -49,7 +48,7 @@ Page({
       }
     }).then((res)=> {
       //成功s
-      console.log(res.data)
+      //console.log(res.data)
       this.setData({
         "slideShow":res.data.slideshow,
         "magazineLlist":res.data.magazineList
@@ -65,7 +64,7 @@ Page({
   bindViewTap: function () {
   },
   onLoad: function () {
-    console.log(this.data)
+    //console.log(this.data)
     this.getData();
     if (app.globalData.userInfo) {
       this.setData({
@@ -75,11 +74,13 @@ Page({
     } else if (this.data.canIUse) {
       // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
       // 所以此处加入 callback 以防止这种情况
+      
       app.userInfoReadyCallback = res => {
         this.setData({
           userInfo: res.userInfo,
           hasUserInfo: true
         })
+
       }
     } else {
       // 在没有 open-type=getUserInfo 版本的兼容处理
@@ -95,11 +96,63 @@ Page({
     }
   },
   getUserInfo: function (e) {
-    console.log(e)
+    //console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
+  },
+  pay() {
+    wx.login({
+      success: res => {
+        // 发送 res.code 到后台换取 openId, sessionKey, unionId    
+        if (res.code) {
+          //发起网络请求
+          
+          wx.request({
+            url: 'http://test.ioobot.com/payinfo',
+            data: {
+              needPay:parseInt(needPay * 100,10),
+              openid: $this.props.openid,
+              tradeNo:id
+            },
+            success(res){
+              console.log('--------------------------')
+              console.log(res)
+            }
+          })
+        } 
+      }
+    })
+    
+
   }
 })
+
+
+if(needPay !== 0){
+  let $this = this;
+  $.ajax({
+      url: '/payinfo',
+      type: 'get',
+      data: {
+          needPay:parseInt(needPay * 100,10),
+          openid: $this.props.openid,
+          tradeNo:id
+      },
+      dataType: 'json',
+      success(res){
+          // console.log('onBridgeReady res',res);
+          $this.jsApiPay(res,confirmContent,createOrder);
+      },
+      error(err){
+          console.log('onBridgeReady err',err);
+      }
+  });
+}else {
+  message.warning('支付金额不能为0');
+}
+
+
+

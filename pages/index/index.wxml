@@ -15,6 +15,7 @@
         <text class="magazineName">{{item.magazineName}}</text>
         <text class="magazineIntro">{{item.magazineIntro}}</text>
         <text class="unitPrice">{{"RMB:"+item.unitPrice}}</text>
+        <button bindtap="pay">点击支付</button>
       </view>
     </view>
   </view>
